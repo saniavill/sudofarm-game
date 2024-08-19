@@ -4,6 +4,7 @@ import requests
 from sudoku_solver import valid, solve
 
 pg.font.init()
+# Uploading images
 images = {}
 for i in range(10):
     images[i] = pg.image.load(f'{i}.png')
@@ -11,7 +12,7 @@ image_size = (50, 50)
 for key in images:
     images[key] = pg.transform.scale(images[key], image_size)
 
-
+# Creating the sudoku grid
 class Grid:
     response = requests.get('https://sugoku.onrender.com/board?difficulty=medium')
     board = response.json()['board']
@@ -71,8 +72,9 @@ class Grid:
                 num = self.squares[row][col]
                 if num != 0:
                     self.screen.blit(images[num], (col * image_size[0], row * image_size[1]))
+
     def select(self, row, col):
-        # Reset all order
+        # Reset order
         for i in range(self.rows):
             for j in range(self.cols):
                 self.squares[i][j].selected = False
@@ -170,11 +172,12 @@ class Square:
             screen.blit(images[self.temp], (x + 5, y + 5))
         elif not(self.value == 0):
             # for values initiated in the game:
-            #txt = font1.render(str(self.value), 1, (28, 28, 28))
+            #txt = font1.render(str(self.value), 1, (28, 28, 28)) would be used to display numbers instead of pixel art
             screen.blit(images[self.value], (x + (gap/2 - image_size[0]/2), y + (gap/2 - image_size[0]/2)))
 
         if self.selected:
             pg.draw.rect(screen, (255, 184, 43), (x, y, gap, gap), 3)
+
 
 
     def draw_change(self, screen, g=True):
@@ -234,6 +237,7 @@ def valid(brd, number, position):
 
     return True
 
+
 def redraw_screen(screen, brd, time, strikes):
     screen.fill((107, 131, 86))
     font2 = pg.font.SysFont("Grand9K Pixel", 30)
@@ -244,9 +248,6 @@ def redraw_screen(screen, brd, time, strikes):
     brd.draw()
 
 
-
-
-
 def format_time(secs):
     sec = secs % 60
     minute = secs // 60
@@ -254,6 +255,7 @@ def format_time(secs):
 
     formatted = " " + str(minute) + ":" + str(sec)
     return formatted
+
 
 def main():
     screen = pg.display.set_mode((480, 580))
