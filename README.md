@@ -10,6 +10,7 @@ This project is my first game, made with the help of my
 friend who did the pixel art. Contact her at
 dielschneidref@gmail.com
 
-E-mail: saniafornow@gmail.com
-Linkedin: https://www.linkedin.com/in/sania-latifi-afshar-49000831a
+[LinkedIn](https://www.linkedin.com/in/sania-latifi-afshar-49000831a/) 
+[Email](sania.latifia@gmail.com)
+
 
